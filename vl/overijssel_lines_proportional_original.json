@@ -1,0 +1,73 @@
+{
+  "width": 700,
+  "height": 600,
+  "padding": 20,
+  "config": {
+    "view": {
+      "stroke": "none"
+    }
+  },
+  "data": {
+    "url": "./data/overijssel_roads.geo.json",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "transform": [{
+    "bin": {"maxbins": 3},
+    "field": "properties.vehicles_per_hour",
+    "as": "bin_vehicles"
+  },
+    {
+    "bin": {"maxbins": 1},
+    "field": "properties.vehicles_per_hour",
+    "as": "all_vehicles"
+  }],
+  "layer":[{
+    "transform":[{"filter":"datum.bin_vehicles==0"}],
+    "mark": {
+      "type": "geoshape",
+      "field":"bin_vehicles",
+      "strokeCap": "round",
+      "strokeWidth": 5
+    },
+    "encoding": {
+      "stroke": {
+        "type": "ordinal",
+        "field":"bin_vehicles"
+      }
+    }
+  },
+    {
+      "transform":[{"filter":"datum.bin_vehicles==1000"}],
+      "mark": {
+        "type": "geoshape",
+        "field":"bin_vehicles",
+        "strokeCap": "round",
+        "strokeWidth": 10
+      },
+      "encoding": {
+        "stroke": {
+          "type": "ordinal",
+          "field":"bin_vehicles"
+        }
+      }
+    },
+    {
+      "transform":[{"filter":"datum.bin_vehicles==2000"}],
+      "mark": {
+        "type": "geoshape",
+        "field":"bin_vehicles",
+        "strokeCap": "round",
+        "strokeWidth": 15
+      },
+      "encoding": {
+        "stroke": {
+          "type": "ordinal",
+          "field":"bin_vehicles"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "width": 700,
+  "height": 600,
+  "padding": 20,
+  "config": {
+    "view": {
+      "stroke": "none"
+    },
+    "legend": {
+      "orient": "right",
+      "titlePadding": 15,
+      "titleFontSize": 15,
+      "titleFontWeight": "bold",
+      "labelOffset": 20,
+      "symbolSize": 300,
+      "symbolType": "M-1,0h3Z"
+    }
+  },
+  "data": {
+    "url": "./data/overijssel_roads.geo.json",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "transform": [
+    {
+    "bin": {"maxbins": 3},
+    "field": "properties.vehicles_per_hour",
+    "as": "bin_vehicles"
+    },
+    {
+      "calculate": "datum.value",
+      "field": "bin_vehicles",
+      "as": "legend_vals"
+    }
+  ],
+  "layer":[{
+    "transform":[{"filter":"datum.bin_vehicles==0"}],
+    "mark": {
+      "type": "geoshape",
+      "field":"bin_vehicles",
+      "strokeCap": "round",
+      "strokeWidth": 5
+    },
+    "encoding": {
+      "stroke": {
+        "type": "ordinal",
+        "field":"legend_vals",
+        "legend": {
+          "symbolStrokeWidth": 5
+        }
+      }
+    }
+  },
+    {
+      "transform":[{"filter":"datum.bin_vehicles==1000"}],
+      "mark": {
+        "type": "geoshape",
+        "field":"bin_vehicles",
+        "strokeCap": "round",
+        "strokeWidth": 10
+      },
+      "encoding": {
+        "stroke": {
+          "type": "ordinal",
+          "field":"legend_vals",
+          "legend": {
+            "symbolStrokeWidth": 10
+          }
+        }
+      }
+    },
+    {
+      "transform":[{"filter":"datum.bin_vehicles==2000"}],
+      "mark": {
+        "type": "geoshape",
+        "field":"bin_vehicles",
+        "strokeCap": "round",
+        "strokeWidth": 15
+      },
+      "encoding": {
+        "stroke": {
+          "type": "ordinal",
+          "field":"legend_vals",
+          "legend": {
+            "symbolStrokeWidth": 15
+          }
+        }
+      }
+    }
+  ]
+}

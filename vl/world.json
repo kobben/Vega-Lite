@@ -1,0 +1,20 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "width": 1000,
+  "height": 600,
+  "data": {
+    "url": "data/cntry_geom.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "projection": {
+    "type": "equirectangular"
+  },
+  "mark": {
+      "type": "geoshape",
+      "stroke": "white",
+      "fill": "#ccc"
+  }
+}

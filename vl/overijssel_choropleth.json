@@ -1,0 +1,63 @@
+{
+  "width": 700,
+  "height": 600,
+  "padding": 20,
+  "config": {
+    "view": {
+      "stroke": "none"
+    }
+  },
+  "data": {
+    "url": "./data/overijssel_centroids.geo.json",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "projection": {
+    "type": "stereographic"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "stroke": "black",
+        "strokeWidth": 0.2
+      },
+      "encoding": {
+        "color": {
+          "field": "properties.bev_dichth",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "greens",
+            "domain": [0,750,1500]
+          },
+          "legend": {
+            "title": "population per km2:"
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fill": "black",
+        "opacity": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "properties.centroid_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "properties.centroid_lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "properties.gm_naam",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

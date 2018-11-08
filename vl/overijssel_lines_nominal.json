@@ -1,0 +1,37 @@
+{
+  "width": 700,
+  "height": 600,
+  "padding": 20,
+  "config": {
+    "view": {
+      "stroke": "none"
+    }
+  },
+  "data": {
+    "url": "./data/overijssel_roads.geo.json",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "projection": {
+    "type": "stereographic"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "strokeWidth": 4
+      },
+      "encoding": {
+        "stroke": {
+          "field": "properties.road_type",
+          "type": "nominal",
+          "legend": {
+            "title": "Road Type"
+          }
+        }
+      }
+    }
+  ]
+}

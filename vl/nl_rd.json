@@ -1,0 +1,25 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.0.0-rc6.json",
+  "width": 800,
+  "height": 600,
+  "data": {
+    "url": "data/nl_rd.json",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "projection": {
+    "type": "equirectangular"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "stroke": "black",
+        "strokeWidth": 0.2,
+        "fill": "#ccc"
+      }
+    }
+  ]
+}

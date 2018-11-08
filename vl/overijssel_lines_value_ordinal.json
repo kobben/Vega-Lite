@@ -1,0 +1,42 @@
+{
+  "width": 700,
+  "height": 600,
+  "padding": 20,
+  "config": {
+    "view": {
+      "stroke": "none"
+    }
+  },
+  "data": {
+    "url": "./data/overijssel_roads.geo.json",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "projection": {
+    "type": "stereographic"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "stroke": "red",
+        "strokeWidth": 8
+      },
+      "encoding": {
+        "stroke": {
+          "field": "properties.max_speed",
+          "type": "ordinal",
+          "scale": {
+            "scheme": "reds",
+            "domain": [80,100,120,130]
+          },
+          "legend": {
+            "title": "Max. Speed"
+          }
+        }
+      }
+    }
+  ]
+}

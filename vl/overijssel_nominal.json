@@ -1,0 +1,65 @@
+{
+  "width": 700,
+  "height": 600,
+  "padding": 20,
+  "config": {
+    "view": {
+      "stroke": "none"
+    }
+  },
+  "data": {
+    "url": "./data/overijssel_centroids.geo.json",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "transform": [
+    {
+      "calculate": "if ((datum.properties.largest_party == 'CDA' || datum.properties.largest_party == 'CU' || datum.properties.largest_party == 'SGP'), datum.properties.largest_party, 'Local party') ",
+      "as": "filtered_data"
+    }
+  ],
+  "projection": {
+    "type": "stereographic"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "stroke": "black",
+        "strokeWidth": 0.2
+      },
+      "encoding": {
+        "color": {
+          "field": "filtered_data",
+          "type": "nominal",
+          "legend": {
+            "title": "Largest party in Council"
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fill": "black",
+        "opacity": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "properties.centroid_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "properties.centroid_lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "properties.gm_naam",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

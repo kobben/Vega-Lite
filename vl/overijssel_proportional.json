@@ -1,0 +1,106 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.0.0-rc6.json",
+  "width": 700,
+  "height": 600,
+  "padding": 20,
+  "config": {
+    "view": {
+      "stroke": "none"
+    }
+  },
+  "data": {
+    "url": "./data/overijssel_centroids.geo.json",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "projection": {
+    "type": "stereographic"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "stroke": "black",
+        "strokeWidth": 0.2,
+        "fill": "#eee"
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fill": "black",
+        "stroke": "black",
+        "strokeWidth": 3,
+        "opacity": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "properties.centroid_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "properties.centroid_lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "properties.gm_naam",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "fill": "red",
+        "stroke": "white",
+        "strokeWidth": 1,
+        "opacity": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "properties.centroid_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "properties.centroid_lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "properties.aant_inw",
+          "type": "quantitative",
+          "scale": {
+            "range": [0,10000]
+          },
+          "legend": {
+            "title": "population:",
+            "orient": "right"
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fill": "white",
+        "opacity": 1,
+        "fontWeight": "200"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "properties.centroid_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "properties.centroid_lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "properties.gm_naam",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}
