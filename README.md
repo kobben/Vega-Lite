@@ -1,2 +1,2 @@
 # Vega-Lite
-Tests of Vega-Lite fro cartography
+Tests of Vega-Lite for cartography
